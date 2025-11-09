@@ -8,5 +8,7 @@
     <color name="text_secondary">#666666</color>
     <color name="inputFill">#FFE6EF</color>   <!-- заливка полей -->
     <color name="hintColor">#8A000000</color> <!-- цвет подсказок -->
+    <color name="cardPink">#FFE9F2</color>       <!-- карточка -->
+    <color name="pillPink">#FFF4F8</color>       <!-- плашки-пилюли -->
 
 </resources>
