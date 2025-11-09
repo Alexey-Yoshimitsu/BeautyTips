@@ -8,9 +8,10 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 class ArticleAdapter(
-    private val articles: List<Article>,
-    private val onArticleClick: (Article) -> Unit
+    private val onArticleClick: (ArticleUiModel) -> Unit
 ) : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
+
+    private val articles = mutableListOf<ArticleUiModel>()
 
     class ArticleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val timeAgoText: TextView = view.findViewById(R.id.timeAgoText)
@@ -44,4 +45,10 @@ class ArticleAdapter(
     }
 
     override fun getItemCount() = articles.size
+
+    fun submitList(newArticles: List<ArticleUiModel>) {
+        articles.clear()
+        articles.addAll(newArticles)
+        notifyDataSetChanged()
+    }
 }

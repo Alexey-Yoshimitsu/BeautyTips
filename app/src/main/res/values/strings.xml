@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Beauty Tips</string>
+    <string name="error_required_fields">Fill all fields</string>
+    <string name="error_register_failed">Registration failed. Try again.</string>
+    <string name="error_login_failed">Login failed. Try again.</string>
+    <string name="error_loading_articles">Unable to load articles</string>
+    <string name="error_random_article">Unable to fetch a random article</string>
+    <string name="tab_bot_placeholder">Bot tab is not ready yet</string>
+    <string name="time_minutes_ago">%d min ago</string>
+    <string name="time_hours_ago">%d h ago</string>
+    <string name="time_days_ago">%d d ago</string>
+    <string name="time_just_now">just now</string>
+    <string name="error_profile_failed">Unable to load profile</string>
+    <string name="support_dialog_title">Contact support</string>
+    <string name="support_dialog_subject_hint">Subject</string>
+    <string name="support_dialog_message_hint">Message</string>
+    <string name="support_dialog_positive">Send</string>
+    <string name="support_dialog_negative">Cancel</string>
+    <string name="support_dialog_success">Support message sent</string>
+    <string name="support_dialog_error">Support request failed</string>
 </resources>

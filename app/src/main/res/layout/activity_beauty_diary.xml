@@ -116,7 +116,7 @@
                 android:layout_height="24dp"
                 android:layout_marginStart="8dp"
                 android:scaleX="-1"
-                android:src="@drawable/ic_chevron_right"
+                android:src="@drawable/ic_arrow"
                 android:tint="@color/text_primary" />
 
             <TextView
@@ -136,7 +136,7 @@
                 android:id="@+id/nextDay"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_chevron_right"
+                android:src="@drawable/ic_arrow"
                 android:tint="@color/text_primary" />
 
             <TextView
