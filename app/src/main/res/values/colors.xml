@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#FF0099</color>
+    <color name="primary_dark">#CC0077</color>
+    <color name="background">#FFE6F2</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#666666</color>
+    <color name="inputFill">#FFE6EF</color>   <!-- заливка полей -->
+    <color name="hintColor">#8A000000</color> <!-- цвет подсказок -->
+
+</resources>

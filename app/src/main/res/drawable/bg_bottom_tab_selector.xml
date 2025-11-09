@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <shape>
+            <solid android:color="#FF55A8"/>  <!-- активный ярко-розовый -->
+            <corners android:radius="20dp"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid android:color="#FFF0F6"/>  <!-- светло-розовый как в макете -->
+            <corners android:radius="20dp"/>
+        </shape>
+    </item>
+</selector>
