@@ -52,7 +52,8 @@ class LoginActivity : AppCompatActivity() {
             } catch (ex: HttpException) {
                 Toast.makeText(this@LoginActivity, ex.message(), Toast.LENGTH_SHORT).show()
             } catch (ex: Exception) {
-                Toast.makeText(this@LoginActivity, R.string.error_login_failed, Toast.LENGTH_SHORT).show()
+                // todo тут падает
+                Toast.makeText(this@LoginActivity, R.string.error_login_failed, Toast.LENGTH_LONG).show()
             } finally {
                 setLoading(actionButton, false)
             }

@@ -33,7 +33,7 @@ object ApiClient {
             .build()
 
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.API_BASE_URL)
+            .baseUrl("https://dkawbm-2a0b-4140-4f7b--2.ru.tuna.am/")
             .addConverterFactory(MoshiConverterFactory.create())
             .client(client)
             .build()
