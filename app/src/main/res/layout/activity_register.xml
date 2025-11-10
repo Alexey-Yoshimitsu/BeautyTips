@@ -229,13 +229,19 @@
                 android:id="@+id/loginButtonContainer"
                 android:layout_width="160dp"
                 android:layout_height="48dp"
-                android:layout_gravity="center_horizontal">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="24dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/login_button_background" />
 
                 <Button
                     android:id="@+id/loginButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/login_button_background"
+                    android:background="@android:color/transparent"
                     android:text="Войти"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"

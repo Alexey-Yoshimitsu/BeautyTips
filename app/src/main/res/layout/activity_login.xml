@@ -5,6 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Logo placeholder - can be replaced with actual logo -->
+
+    <!-- Login title -->
+
+    <!-- Email input -->
+
     <ImageView
         android:id="@+id/rectangle_6"
         android:layout_width="match_parent"
@@ -13,14 +19,12 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="2dp"
         android:scaleType="centerCrop"
         android:src="@drawable/rectangle_6" />
-
-    <!-- Logo placeholder - can be replaced with actual logo -->
-
-    <!-- Login title -->
-
-    <!-- Email input -->
 
     <ImageView
         android:id="@+id/group_25"
@@ -47,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/group_25"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="100dp"
         android:layout_marginStart="39dp"
         android:layout_marginEnd="40dp"
         android:orientation="vertical">
