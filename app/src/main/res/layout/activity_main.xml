@@ -8,14 +8,16 @@
     android:paddingStart="16dp"
     android:paddingEnd="16dp">
 
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:layout_marginTop="16dp"
         android:background="@color/background"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="40dp"
@@ -35,15 +37,16 @@
             android:layout_height="32dp"
             android:layout_gravity="end"
             android:src="@drawable/ic_search" />
-
     </androidx.appcompat.widget.Toolbar>
 
+    <!-- Приветствие -->
     <TextView
         android:id="@+id/greetingText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Добрый день, Маргарита!"
+        android:gravity="center"
+        android:text="Добрый день,\nМаргарита!"
         android:textColor="@color/text_primary"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -51,59 +54,82 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <TextView
-        android:id="@+id/subtitleText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Выпадет "
-        android:textColor="@color/text_primary"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@id/randomText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/greetingText" />
-
-    <TextView
-        android:id="@+id/randomText"
+    <!-- Подзаголовок (2 строки) -->
+    <LinearLayout
+        android:id="@+id/subtitleContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="случайная статья"
-        android:textColor="@color/primary"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/subtitleText"
-        app:layout_constraintTop_toTopOf="@id/subtitleText" />
-
-    <TextView
-        android:id="@+id/continuationText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text=" при нажатии кнопки"
-        android:textColor="@color/text_primary"
-        android:textSize="18sp"
+        android:layout_marginTop="12dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/randomText"
-        app:layout_constraintTop_toTopOf="@id/subtitleText" />
-
-    <Button
-        android:id="@+id/randomButton"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="@color/primary"
-        android:text="тЫк"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subtitleText" />
+        app:layout_constraintTop_toBottomOf="@id/greetingText">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/subtitleTextLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Выпадет "
+                android:textColor="@color/text_primary"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/randomText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="случайная"
+                android:textColor="@color/primary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/subtitleTextRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" статья"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/continuationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="при нажатии кнопки"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- Кнопка -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/randomButton"
+
+        android:layout_width="76dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/tik_button_bg"
+        android:text="тык"
+
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitleContainer" />
+
+    <!-- Заголовок блока рекомендаций -->
     <TextView
         android:id="@+id/recommendedTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center_horizontal"
         android:text="Подобрали статьи специально для вас"
         android:textColor="@color/text_primary"
         android:textSize="20sp"
@@ -112,6 +138,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/randomButton" />
 
+    <!-- Список статей -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/articlesRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:clipToPadding="false"
+        android:paddingBottom="88dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recommendedTitle"
+        tools:listitem="@layout/article_item" />
+
+    <!-- Нижняя навигация -->
     <androidx.cardview.widget.CardView
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
@@ -119,21 +160,20 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@android:color/transparent"
+        android:translationZ="0dp"
         app:cardBackgroundColor="@android:color/transparent"
-        app:cardCornerRadius="24dp"
-        app:cardElevation="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="64dp"
             android:gravity="center"
-            android:background="@android:color/transparent"
-            android:orientation="horizontal"
-            android:padding="8dp">
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/tabArticles"
@@ -153,16 +193,5 @@
                 android:text="Бот" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/articlesRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recommendedTitle"
-        tools:listitem="@layout/article_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
