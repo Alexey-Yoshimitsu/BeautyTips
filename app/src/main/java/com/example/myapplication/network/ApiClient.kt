@@ -1,7 +1,8 @@
 package com.example.myapplication.network
 
-import com.example.myapplication.BuildConfig
 import com.example.myapplication.SessionManager
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,13 +18,14 @@ object ApiClient {
         val authInterceptor = Interceptor { chain ->
             val token = sessionManager.fetchAuthToken()
             val request = chain.request()
-            val authenticatedRequest = if (!token.isNullOrBlank() && request.header("Authorization") == null) {
-                request.newBuilder()
-                    .addHeader("Authorization", "Bearer $token")
-                    .build()
-            } else {
-                request
-            }
+            val authenticatedRequest =
+                if (!token.isNullOrBlank() && request.header("Authorization") == null) {
+                    request.newBuilder()
+                        .addHeader("Authorization", "Bearer $token")
+                        .build()
+                } else {
+                    request
+                }
             chain.proceed(authenticatedRequest)
         }
 
@@ -32,9 +34,13 @@ object ApiClient {
             .addInterceptor(logging)
             .build()
 
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
+
         return Retrofit.Builder()
-            .baseUrl("https://dkawbm-2a0b-4140-4f7b--2.ru.tuna.am/")
-            .addConverterFactory(MoshiConverterFactory.create())
+            .baseUrl("https://fitly-discreet-quail.cloudpub.ru/")
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(client)
             .build()
             .create(BeautyTipsApi::class.java)

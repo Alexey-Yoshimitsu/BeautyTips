@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -12,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -51,9 +53,13 @@ class LoginActivity : AppCompatActivity() {
                 openMain()
             } catch (ex: HttpException) {
                 Toast.makeText(this@LoginActivity, ex.message(), Toast.LENGTH_SHORT).show()
+                Log.e("Login", ex.message())
+
             } catch (ex: Exception) {
                 // todo тут падает
                 Toast.makeText(this@LoginActivity, R.string.error_login_failed, Toast.LENGTH_LONG).show()
+                Log.e("Login", ex.toString())
+
             } finally {
                 setLoading(actionButton, false)
             }

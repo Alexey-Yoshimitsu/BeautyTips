@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
+
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var sessionManager: SessionManager

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -25,10 +26,12 @@
             android:src="@drawable/user_avatar" />
 
         <TextView
+            android:id="@+id/main_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Маргарита"
+            android:layout_marginRight="40dp"
             android:textColor="@color/primary"
             android:textSize="16sp" />
 
@@ -39,108 +42,10 @@
             android:src="@drawable/ic_search" />
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- Приветствие -->
-    <TextView
-        android:id="@+id/greetingText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:text="Добрый день,\nМаргарита!"
-        android:textColor="@color/text_primary"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
-
-    <!-- Подзаголовок (2 строки) -->
-    <LinearLayout
-        android:id="@+id/subtitleContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/greetingText">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/subtitleTextLeft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Выпадет "
-                android:textColor="@color/text_primary"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/randomText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="случайная"
-                android:textColor="@color/primary"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/subtitleTextRight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" статья"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/continuationText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="при нажатии кнопки"
-            android:textColor="@color/text_primary"
-            android:textSize="18sp" />
-    </LinearLayout>
-
-    <!-- Кнопка -->
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/randomButton"
-
-        android:layout_width="76dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/tik_button_bg"
-        android:text="тык"
-
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subtitleContainer" />
-
-    <!-- Заголовок блока рекомендаций -->
-    <TextView
-        android:id="@+id/recommendedTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:gravity="center_horizontal"
-        android:text="Подобрали статьи специально для вас"
-        android:textColor="@color/text_primary"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/randomButton" />
-
-    <!-- Список статей -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/articlesRecyclerView"
+    <!-- ЕДИНЫЙ скроллер содержимого -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollContainer"
+        android:fillViewport="true"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
@@ -149,10 +54,121 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/recommendedTitle"
-        tools:listitem="@layout/article_item" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        >
 
-    <!-- Нижняя навигация -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Приветствие -->
+            <TextView
+                android:id="@+id/greetingText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="Добрый день,\nМаргарита!"
+                android:textColor="@color/text_primary"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <!-- Подзаголовок (2 строки) -->
+            <LinearLayout
+                android:id="@+id/subtitleContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/subtitleTextLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Выпадет "
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/randomText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="случайная"
+                        android:textColor="@color/primary"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/subtitleTextRight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" статья"
+                        android:textColor="@color/text_primary"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/continuationText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="при нажатии кнопки"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <!-- Кнопка -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/randomButton"
+                android:layout_width="76dp"
+                android:layout_height="43dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/tik_button_bg"
+                android:text="тык"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white" />
+
+            <!-- Заголовок блока рекомендаций -->
+            <TextView
+                android:id="@+id/recommendedTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_horizontal"
+                android:text="Подобрали статьи специально для вас"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- Список статей (внутри NestedScrollView) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/articlesRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:overScrollMode="never"
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false"
+                android:background="@android:color/transparent"
+                tools:listitem="@layout/article_item" />
+
+            <!-- нижний отступ, чтобы контент «дышал» над навигацией -->
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Нижняя навигация (фиксирована) -->
     <androidx.cardview.widget.CardView
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
@@ -161,6 +177,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:translationZ="0dp"
+        android:background="@android:color/transparent"
         app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="16dp"
         app:cardElevation="0dp"
@@ -173,6 +190,8 @@
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:gravity="center"
+            android:background="@android:color/transparent"
+            android:translationZ="2px"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
@@ -193,5 +212,6 @@
                 android:text="Бот" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

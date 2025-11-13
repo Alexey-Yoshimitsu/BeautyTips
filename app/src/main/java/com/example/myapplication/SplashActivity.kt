@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 
+
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var sessionManager: SessionManager

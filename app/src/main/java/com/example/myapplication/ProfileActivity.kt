@@ -16,7 +16,6 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.network.ApiClient
 import com.example.myapplication.network.models.SupportMessageRequest
-import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -28,8 +27,8 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var personalHeader: View
     private lateinit var personalContent: View
     private lateinit var chevron: ImageView
-    private lateinit var nameInput: TextInputEditText
-    private lateinit var emailInput: TextInputEditText
+    private lateinit var nameInput: EditText
+    private lateinit var emailInput: EditText
     private var expanded = false
 
     private lateinit var sessionManager: SessionManager

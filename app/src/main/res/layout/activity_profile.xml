@@ -9,9 +9,10 @@
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="76dp"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp">
+        android:paddingEnd="16dp"
+        >
 
         <ImageView
             android:id="@+id/backButton"
@@ -231,6 +232,18 @@
                                 android:textColorHint="#8A000000"
                                 android:textSize="16sp" />
                         </FrameLayout>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/logoutButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="43dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="12dp"
+                            android:background="@drawable/tik_button_bg"
+                            android:text="Выйти"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white" />
+
 
                     </LinearLayout>
                 </LinearLayout>

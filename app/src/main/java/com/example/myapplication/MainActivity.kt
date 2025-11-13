@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.time.Duration
 import java.time.Instant
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         setupRandomButton()
         setupProfileShortcut()
         setupBottomTabs()
+        setupName()
 
         fetchArticles()
     }
@@ -65,6 +68,28 @@ class MainActivity : AppCompatActivity() {
             .map { toolbar.getChildAt(it) }
             .firstOrNull { it is ImageView }
         profileIcon?.setOnClickListener { openProfile() }
+    }
+
+    private fun setupName() {
+        lifecycleScope.launch {
+            try {
+                val user = withContext(Dispatchers.IO) { api.getProfile() }
+                val name = findViewById<TextView>(R.id.greetingText)
+                val mainName = findViewById<TextView>(R.id.main_name)
+                name.text = "Добрый день\n" + user.name + "!"
+                mainName.text  = user.name
+
+
+            } catch (ex: HttpException) {
+                if (ex.code() == 401) {
+                    handleUnauthorized()
+                } else {
+                    Toast.makeText(this@MainActivity, R.string.error_profile_failed, Toast.LENGTH_SHORT).show()
+                }
+            } catch (ex: Exception) {
+                Toast.makeText(this@MainActivity, R.string.error_profile_failed, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun setupBottomTabs() {
