@@ -10,5 +10,7 @@
     <color name="hintColor">#8A000000</color> <!-- цвет подсказок -->
     <color name="cardPink">#FFE9F2</color>       <!-- карточка -->
     <color name="pillPink">#FFF4F8</color>       <!-- плашки-пилюли -->
+    <color name="ic_launcher_background">#FFFFFF</color>
+
 
 </resources>

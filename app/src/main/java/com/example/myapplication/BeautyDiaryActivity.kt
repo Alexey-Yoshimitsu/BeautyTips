@@ -1,5 +1,7 @@
 package com.example.myapplication
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -50,6 +52,9 @@ class BeautyDiaryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_beauty_diary)
 
         // Подсветка слова "бьюти-дневник"
+        val userProfile = findViewById<ImageView>(R.id.user_profile)
+        userProfile?.setOnClickListener {  startActivity(Intent(this, ProfileActivity::class.java)) }
+
         val title = findViewById<TextView>(R.id.titleText)
         val base = "Это твой бьюти-дневник"
         val span = SpannableString(base)

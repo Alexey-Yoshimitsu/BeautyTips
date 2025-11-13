@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        articleAdapter = ArticleAdapter { showArticleDialog(it.title, it.preview) }
+        articleAdapter = ArticleAdapter { openArticle(it.title, it.preview, it.timeAgo) }
         val recyclerView = findViewById<RecyclerView>(R.id.articlesRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = articleAdapter
@@ -77,17 +77,22 @@ class MainActivity : AppCompatActivity() {
                 val name = findViewById<TextView>(R.id.greetingText)
                 val mainName = findViewById<TextView>(R.id.main_name)
                 name.text = "Добрый день\n" + user.name + "!"
-                mainName.text  = user.name
+                mainName.text = user.name
 
 
             } catch (ex: HttpException) {
                 if (ex.code() == 401) {
                     handleUnauthorized()
                 } else {
-                    Toast.makeText(this@MainActivity, R.string.error_profile_failed, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@MainActivity,
+                        R.string.error_profile_failed,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             } catch (ex: Exception) {
-                Toast.makeText(this@MainActivity, R.string.error_profile_failed, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, R.string.error_profile_failed, Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
@@ -126,10 +131,18 @@ class MainActivity : AppCompatActivity() {
                 if (ex.code() == 401) {
                     handleUnauthorized()
                 } else {
-                    Toast.makeText(this@MainActivity, R.string.error_loading_articles, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@MainActivity,
+                        R.string.error_loading_articles,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             } catch (ex: Exception) {
-                Toast.makeText(this@MainActivity, R.string.error_loading_articles, Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@MainActivity,
+                    R.string.error_loading_articles,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
@@ -138,15 +151,20 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             try {
                 val article = withContext(Dispatchers.IO) { api.getRandomArticle() }
-                showArticleDialog(article.title, article.preview)
+                openArticle(article.title, article.preview, null)
             } catch (ex: HttpException) {
                 if (ex.code() == 401) {
                     handleUnauthorized()
                 } else {
-                    Toast.makeText(this@MainActivity, R.string.error_random_article, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@MainActivity,
+                        R.string.error_random_article,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             } catch (ex: Exception) {
-                Toast.makeText(this@MainActivity, R.string.error_random_article, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, R.string.error_random_article, Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
@@ -197,4 +215,14 @@ class MainActivity : AppCompatActivity() {
         sessionManager.clearSession()
         openLogin()
     }
+
+    private fun openArticle(title: String, preview: String, timeAgo: String?) {
+        val intent = Intent(this, ArticleDetailsActivity::class.java).apply {
+            putExtra(ArticleDetailsActivity.EXTRA_TITLE, title)
+            putExtra(ArticleDetailsActivity.EXTRA_PREVIEW, preview)
+            timeAgo?.let { putExtra(ArticleDetailsActivity.EXTRA_TIME, it) }
+        }
+        startActivity(intent)
+    }
+
 }

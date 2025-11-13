@@ -12,6 +12,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.network.ApiClient
@@ -29,6 +30,8 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var chevron: ImageView
     private lateinit var nameInput: EditText
     private lateinit var emailInput: EditText
+
+    private lateinit var logoutButton: AppCompatButton
     private var expanded = false
 
     private lateinit var sessionManager: SessionManager
@@ -48,6 +51,8 @@ class ProfileActivity : AppCompatActivity() {
         chevron = findViewById(R.id.personalChevron)
         nameInput = findViewById(R.id.nameInput)
         emailInput = findViewById(R.id.emailInput)
+        logoutButton = findViewById(R.id.logoutButton)
+        logoutButton.setOnClickListener { handleUnauthorized() }
 
         expanded = savedInstanceState?.getBoolean("expanded") ?: expanded
         applyExpanded(animated = false)
@@ -74,10 +79,18 @@ class ProfileActivity : AppCompatActivity() {
                 if (ex.code() == 401) {
                     handleUnauthorized()
                 } else {
-                    Toast.makeText(this@ProfileActivity, R.string.error_profile_failed, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@ProfileActivity,
+                        R.string.error_profile_failed,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             } catch (ex: Exception) {
-                Toast.makeText(this@ProfileActivity, R.string.error_profile_failed, Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@ProfileActivity,
+                    R.string.error_profile_failed,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
@@ -120,15 +133,27 @@ class ProfileActivity : AppCompatActivity() {
                 withContext(Dispatchers.IO) {
                     api.sendSupportMessage(SupportMessageRequest(subject, message))
                 }
-                Toast.makeText(this@ProfileActivity, R.string.support_dialog_success, Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@ProfileActivity,
+                    R.string.support_dialog_success,
+                    Toast.LENGTH_SHORT
+                ).show()
             } catch (ex: HttpException) {
                 if (ex.code() == 401) {
                     handleUnauthorized()
                 } else {
-                    Toast.makeText(this@ProfileActivity, R.string.support_dialog_error, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@ProfileActivity,
+                        R.string.support_dialog_error,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             } catch (ex: Exception) {
-                Toast.makeText(this@ProfileActivity, R.string.support_dialog_error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@ProfileActivity,
+                    R.string.support_dialog_error,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }

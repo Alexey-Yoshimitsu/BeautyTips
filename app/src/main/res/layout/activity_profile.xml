@@ -239,7 +239,7 @@
                             android:layout_height="43dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="12dp"
-                            android:background="@drawable/tik_button_bg"
+                            android:background="@drawable/login_button_background"
                             android:text="Выйти"
                             android:textAllCaps="false"
                             android:textColor="@android:color/white" />
