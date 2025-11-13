@@ -8,6 +8,7 @@
     <!-- Верхний бар -->
     <RelativeLayout
         android:id="@+id/header"
+        android:layout_marginTop="32dp"
         android:layout_width="match_parent"
         android:layout_height="76dp"
         android:paddingStart="16dp"
@@ -235,11 +236,11 @@
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/logoutButton"
-                            android:layout_width="match_parent"
+                            android:layout_width="85dp"
                             android:layout_height="43dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="12dp"
-                            android:background="@drawable/login_button_background"
+                            android:background="@drawable/bottom_bar_bg"
                             android:text="Выйти"
                             android:textAllCaps="false"
                             android:textColor="@android:color/white" />
